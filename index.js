@@ -1,27 +1,5 @@
-import express from 'express';
-import http from 'http';
-import { Server } from 'socket.io';
+import Server from './models/server.js';
 
-const app = express();
-const server = http.createServer(app);
-const io = new Server(server);
+const server = new Server();
 
-app.use(express.static('./public'));
-
-io.on('connection', (socket) => {
-  console.log(socket.id);
-  // socket.emit('welcome-msg', { date: new Date(), msg: 'welcome to the server' });
-
-  socket.on('client-msg', (data) => {
-    console.log(data);
-  });
-
-  socket.on('massage-to-server', (data) => {
-    console.log(data);
-
-    io.emit('massage-from-server', data);
-  });
-});
-server.listen(8080, () => {
-  console.log('server up in 8080 port');
-});
+server.execute();
