@@ -1,5 +1,5 @@
-const socket = io('http://localhost:8080');
 
+const socket = io('http://localhost:8080');
 const miForm = document.querySelector('#miForm');
 const misMsg = document.querySelector('#misMsg');
 const txtMsg = document.querySelector('#txtMsg');
@@ -18,6 +18,7 @@ miForm.addEventListener('submit', (e) => {
 
   const text = txtMsg.value;
   socket.emit('massage-to-server', { text });
+  txtMsg.value = '';
 });
 
 // setTimeout(() => {

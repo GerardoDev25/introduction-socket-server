@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import http from 'http';
 import { Server as ServerSocket } from 'socket.io';
 
@@ -7,7 +8,7 @@ import Sockets from './sockets.js';
 class Server {
   constructor() {
     this.app = express();
-    this.port = 8080;
+    this.port = process.env.PORT || 8080;
     this.server = http.createServer(this.app);
     this.io = new ServerSocket(this.server);
   }
@@ -18,6 +19,7 @@ class Server {
 
   middlewares() {
     this.app.use(express.static('./public'));
+    this.app.use(cors());
   }
 
   listen() {
