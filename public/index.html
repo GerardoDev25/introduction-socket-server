@@ -4,10 +4,32 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" />
+
     <title>minichat</title>
   </head>
-  <body>
-    <h1>mini chat</h1>
+  <body class="container">
+    <h1 class="mt-5">mini chat</h1>
+    <hr />
+
+    <form id="miForm">
+      <div class="row">
+        <div class="col-8">
+          <input type="text" id="txtMsg" class="form-control" />
+        </div>
+        <div class="col-4">
+          <button type="submit" class="btn btn-primary">Send</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="row">
+      <div class="col">
+        <ul id="misMsg" class="mt-2"></ul>
+      </div>
+    </div>
+
+    <!-- ! --------------------------------- -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.js"
       integrity="sha512-vGcPDqyonHb0c11UofnOKdSAt5zYRpKI4ow+v6hat4i96b7nHSn8PQyk0sT5L9RECyksp+SztCPP6bqeeGaRKg=="
@@ -15,18 +37,6 @@
       referrerpolicy="no-referrer"
     ></script>
 
-    <script>
-      const socket = io('http://localhost:8080');
-      socket.on('welcome-msg', (data) => {
-        console.log(data);
-      });
-
-      setTimeout(() => {
-        socket.emit('client-msg', {
-          msg: 'Client',
-          name: 'Gerardo',
-        });
-      }, 2000);
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>

@@ -10,10 +10,16 @@ app.use(express.static('./public'));
 
 io.on('connection', (socket) => {
   console.log(socket.id);
-  socket.emit('welcome-msg', { date: new Date(), msg: 'welcome to the server' });
+  // socket.emit('welcome-msg', { date: new Date(), msg: 'welcome to the server' });
 
   socket.on('client-msg', (data) => {
     console.log(data);
+  });
+
+  socket.on('massage-to-server', (data) => {
+    console.log(data);
+
+    io.emit('massage-from-server', data);
   });
 });
 server.listen(8080, () => {
