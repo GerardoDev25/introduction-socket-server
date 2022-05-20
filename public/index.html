@@ -18,9 +18,15 @@
     <script>
       const socket = io('http://localhost:8080');
       socket.on('welcome-msg', (data) => {
-
         console.log(data);
       });
+
+      setTimeout(() => {
+        socket.emit('client-msg', {
+          msg: 'Client',
+          name: 'Gerardo',
+        });
+      }, 2000);
     </script>
   </body>
 </html>
