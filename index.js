@@ -8,8 +8,9 @@ const io = new Server(server);
 
 app.use(express.static('./public'));
 
-io.on('connection', () => {
-  console.log('client connected');
+io.on('connection', (socket) => {
+  console.log(socket.id);
+  socket.emit('welcome-msg', { date: new Date(), msg: 'welcome to the server' });
 });
 
 server.listen(8080, () => {
